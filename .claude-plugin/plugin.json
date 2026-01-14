@@ -1,0 +1,13 @@
+{
+  "name": "research",
+  "version": "1.0.0",
+  "description": "Deep research to eliminate assumptions before implementation",
+  "author": {
+    "name": "Nick Rempel",
+    "email": "nbrempel@gmail.com",
+    "url": "https://nrempel.com"
+  },
+  "repository": "https://github.com/nrempel/claude-research",
+  "license": "MIT",
+  "keywords": ["research", "planning", "assumptions", "verify", "investigate"]
+}
