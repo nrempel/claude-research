@@ -120,14 +120,33 @@ TodoWrite:
 
 ## Research Loop
 
-For each unverified assumption:
+### Parallel Research with Agents
 
-### a) Mark in progress
-```
-TodoWrite: mark current assumption as in_progress
-```
+When you have multiple unverified assumptions, **launch agents in parallel** to speed up research:
 
-### b) Research it
+1. **Categorize assumptions:**
+   - **External** (libraries, APIs, services) → use `web-researcher` agent
+   - **Codebase** (existing patterns, files, infrastructure) → use `codebase-explorer` agent
+
+2. **Launch parallel agents:**
+   ```
+   Use the Task tool to launch multiple agents in a single message:
+
+   Task(subagent_type="research:web-researcher", prompt="Verify: Stripe supports metered billing")
+   Task(subagent_type="research:codebase-explorer", prompt="Verify: Project has webhook infrastructure")
+   Task(subagent_type="research:web-researcher", prompt="Verify: Postgres 14 supports JSONB")
+   ```
+
+   Launch up to 3-5 agents concurrently for independent assumptions.
+
+3. **Collect results:**
+   - Each agent returns a structured finding (VERIFIED/REFUTED/PARTIALLY TRUE)
+   - Log each finding to the state file
+   - Update assumption status based on verdicts
+
+### Sequential Fallback
+
+If agents aren't available or for complex assumptions requiring context:
 
 **For external tools/services/libraries:**
 - Use WebSearch to find official documentation
@@ -140,12 +159,7 @@ TodoWrite: mark current assumption as in_progress
 - Use Read to examine actual code
 - Check package.json, config files, etc.
 
-**For behavior questions:**
-- Search for documentation
-- Look for examples or tests
-- Check issue trackers for edge cases
-
-### c) Log the finding
+### Log the finding
 
 Update the state file with your finding:
 
