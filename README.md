@@ -119,6 +119,19 @@ Add to your `.gitignore`:
 | Version compatibility | Changelogs, compatibility docs |
 | Service limits | Official docs, pricing pages |
 
+## Plan Mode Integration
+
+This plugin integrates with Claude Code's plan mode:
+
+**1. Hook on plan mode entry:**
+When you enter plan mode, the plugin displays a reminder:
+```
+💡 Tip: Run /research to eliminate assumptions before finalizing your plan.
+```
+
+**2. Writes to plan file on completion:**
+When research completes, verified findings are written to the active plan file at `~/.claude/plans/`. This ensures your plan is backed by verified research.
+
 ## vs /iterate
 
 | /iterate | /research |
@@ -128,7 +141,12 @@ Add to your `.gitignore`:
 | Tests/builds verify | Docs/code verify |
 | After planning | Before execution |
 
-Use `/research` first to verify your approach, then `/iterate` to execute it.
+**Recommended workflow:**
+1. Enter plan mode
+2. Run `/research` to verify approach
+3. Finalize plan with verified facts
+4. Exit plan mode
+5. Run `/iterate` to execute
 
 ## License
 

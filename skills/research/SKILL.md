@@ -215,12 +215,28 @@ Research is done when:
 - ❌ [Original assumption] → [What's actually true]
 ```
 
-2. Delete the state file:
+2. **Write to Claude Code plan file** (if one exists):
+```bash
+# Check for existing plan file
+ls ~/.claude/plans/*.md 2>/dev/null | head -1
+```
+
+If a plan file exists, update it with the verified plan:
+- Read the existing plan file
+- Replace or append a "## Verified Research" section with:
+  - Goal
+  - Verified approach
+  - Key findings
+  - All verified facts with sources
+
+This integrates your research directly into plan mode's plan file.
+
+3. Delete the research state file:
 ```bash
 rm .claude/research/<branch>-<timestamp>.md
 ```
 
-3. Clear todos
+4. Clear todos
 
 ## What Counts as "Verified"
 

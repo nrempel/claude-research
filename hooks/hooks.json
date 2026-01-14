@@ -1,0 +1,15 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "EnterPlanMode",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo '💡 Tip: Run /research to eliminate assumptions before finalizing your plan.'"
+          }
+        ]
+      }
+    ]
+  }
+}
